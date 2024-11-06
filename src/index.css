@@ -1,0 +1,29 @@
+
+
+
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+
+body {
+      height: 100%;
+      width: 100%;
+      background: #000;
+      color: aliceblue;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.Scroll {
+    overflow: auto;
+}
+
+.Scroll::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+}
+
+/* For Firefox */
+.Scroll {
+    scrollbar-width: none; /* Hides the scrollbar */
+}
