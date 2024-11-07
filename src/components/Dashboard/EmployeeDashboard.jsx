@@ -40,7 +40,7 @@ export default function EmployeeDashboard({ userLoggedIn,setUser }) {
                     </div>
                 </div>
                 <div
-                    className={`max-sm:block  flex w-full gap-3 items-end h-[55%] overflow-y-auto Scroll mt-9 transition-all duration-1000 ease-in-out transform ${isExpanded ? 'max-sm:translate-y-[-50%] max-sm:z-50 max-sm:h-[100%]' : ' max-sm:z-0 max-sm:h-[55%] max-sm:overflow-hidden'}`}>
+                    className={`max-sm:block  flex w-full gap-3 items-end h-[55%] overflow-y-auto Scroll mt-9 transition-all duration-1000 ease-in-out transform ${isExpanded ? 'max-sm:translate-y-[-40%] max-sm:z-50 max-sm:h-[100%]' : ' max-sm:z-0 max-sm:h-[55%] '}`}>
                     <div className="hidden max-sm:block transition-all duration-300 ease-in-out " onClick={handleToggle}>
                         <p>^</p>
                     </div>
