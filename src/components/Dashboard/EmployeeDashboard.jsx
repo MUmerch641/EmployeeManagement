@@ -7,7 +7,6 @@ import NewTask from '../TaskList/NewTask';
 
 
 export default function EmployeeDashboard({ userLoggedIn,setUser }) {
-    console.log(userLoggedIn);
 
     const [isExpanded, setIsExpanded] = useState(false);
     const handleToggle = () => {
@@ -49,7 +48,7 @@ export default function EmployeeDashboard({ userLoggedIn,setUser }) {
 
                     {userLoggedIn?.tasks.map((task, index) => (
                         <>
-                            {task.active && <AcceptTask task={task} data={task} />}
+                            {task.active && <AcceptTask check task={task} data={task} />}
 
                             {task.completed && <CompleteTask task={task} data={task} />}
 

@@ -51,7 +51,7 @@ function CreateTask() {
       ...userData,
       employees: updatedEmployees
     });
-
+console.log(userData);
     alert("Task Created!");
 
     // Clear the input fields after creating the task
