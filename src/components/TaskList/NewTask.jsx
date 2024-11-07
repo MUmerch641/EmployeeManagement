@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CompleteTask({task}) {
   return (
-    <div className='bg-yellow-400 h-[30vh] w-[30%] rounded-xl flex-shrink-0  max-lg:h-[150px] max-lg:w-[150px] p-3 overflow-y-auto Scroll max-sm:w-full max-sm:rounded-none'>
+    <div className='bg-yellow-400 h-[30vh] w-[30%] rounded-xl flex-shrink-0  max-lg:h-[200px] max-lg:w-[150px] p-3 overflow-y-auto Scroll max-sm:w-full max-sm:rounded-none'>
     <div className="flex justify-between ">
         <h1 className='bg-red-500 p-1 rounded-md '>{task.category}</h1>
         <p>{task.taskDate}</p>

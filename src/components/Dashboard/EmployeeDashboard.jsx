@@ -7,7 +7,7 @@ import NewTask from '../TaskList/NewTask';
 
 
 export default function EmployeeDashboard({ userLoggedIn,setUser }) {
-console.log(userLoggedIn);
+    console.log(userLoggedIn);
 
     const [isExpanded, setIsExpanded] = useState(false);
     const handleToggle = () => {

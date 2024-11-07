@@ -7,8 +7,7 @@ import { AuthContext } from './context/AuthProvider';
 import { setLocalStorage } from './Utils/LocalStorage';
 
 function App() {
-  setLocalStorage();
-
+  // setLocalStorage();
   const [userData, setuserData] = useContext(AuthContext);
   const [User, setUser] = useState(null);
   const [LoginUser, setLoginUser] = useState(null);
@@ -36,12 +35,13 @@ function App() {
   }, [userData]);
 
   const handleUser = (email, pass) => {
-    if (userData?.admin?.find((e) => e.email === email && e.password === pass)) {
+    let Admin=userData?.admin?.find((e) => e.email === email && e.password === pass)
+    if (Admin) {
       setUser('Admin');
+      setLoginUser(Admin.firstName)
       localStorage.setItem('loggedInUSer', JSON.stringify({ role: 'Admin' }));
     } else if (userData) {
       const employee = userData?.employees.find((e) => e.email === email && e.password === pass);
-      console.log(userData);
       if (employee) {
         setUser('Employee');
         setLoginUser(employee);
@@ -54,13 +54,14 @@ function App() {
 
   return (
     <>
+    
       {User === null ? (
         <Login handleUser={handleUser} />
       ) : User === 'Admin' ? (
-      <AdminDashboard  setUser={setUser} />
+      <AdminDashboard  userLoggedIn={LoginUser} setUser={setUser} />
 
       ) : User === 'Employee' ? (
-        <EmployeeDashboard setUser={setUser} userLoggedIn={LoginUser} />
+        <EmployeeDashboard  setUser={setUser} userLoggedIn={LoginUser} />
       ) : null}
     </>
   );

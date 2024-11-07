@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import AllTask from './AllTask';
 import { AuthContext } from '../../context/AuthProvider';
 
 function CreateTask() {
   // AuthContext
-  let [userData,setuserData] = useContext(AuthContext)
+  let [userData, setuserData] = useContext(AuthContext);
+
   // State for each input field
   const [taskTitle, setTaskTitle] = useState("");
   const [date, setDate] = useState("");
@@ -35,15 +36,24 @@ function CreateTask() {
     // Add the new task to the tasks array
     setTasks((prevTasks) => [...prevTasks, newTask]);
 
-    const data = userData.employees;
-    data?.forEach(element => {
-      if (assignTo == element.firstName) {
-        element.tasks.push(newTask);
+    // Create a copy of userData and update employees with new task
+    const updatedEmployees = userData.employees.map((employee) => {
+      if (assignTo === employee.firstName) {
+        return {
+          ...employee,
+          tasks: [...(employee.tasks || []), newTask]
+        };
       }
+      return employee;
     });
-    setuserData(data)
-    console.log(data);
+
+    setuserData({
+      ...userData,
+      employees: updatedEmployees
+    });
+
     alert("Task Created!");
+
     // Clear the input fields after creating the task
     setTaskTitle("");
     setDate("");
@@ -51,10 +61,11 @@ function CreateTask() {
     setCategory("");
     setDescription("");
   };
+
   return (
     <>
       <form onSubmit={handleCreateTask} className="space-y-4 ">
-        <div className="flex justify-between max-sm:flex-col w-[100vw] max-sm:w-[100%] gap-3">
+        <div className="flex justify-between max-sm:flex-col max-sm:w-[100%] gap-3">
           <div className="w-[50%] max-sm:w-[100%]">
             <div>
               <label className="block text-gray-700">Task Title</label>
@@ -96,13 +107,14 @@ function CreateTask() {
               />
             </div>
           </div>
-          <div className="w-[50%] max-sm:w-[100%]">
-            <div>
+          <div className="w-[50%] max-sm:w-[100%] ">
+            <div className='h-[79%] min-sm:flex min-sm:flex-col min-sm:items-between'>
               <label className="block text-gray-700">Description</label>
               <textarea
+             style={{ resize: "none" }}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-[100%] p-2 border rounded bg-transparent"
+                className="w-[100%] p-2 border rounded bg-transparent h-[20vh]"
                 placeholder="Enter task description"
               />
             </div>
@@ -119,21 +131,19 @@ function CreateTask() {
 
       {/* Task Preview */}
       <AllTask tasks={tasks} />
-      {/* All employees */}
+      
+      {/* Display All Employees */}
       <div>
-
-        {
-          userData?.employees?.map((e) => {
-            return <div className='flex w-full justify-around'>
-              <p>{e.firstName}</p>
-              <p>Task</p>
-              <p>Set</p>
-            </div>
-          })
-        }
+        {userData?.employees?.map((e, index) => (
+          <div key={index} className="flex w-full justify-around">
+            <p>{e.firstName}</p>
+            <p>Task</p>
+            <p>Set</p>
+          </div>
+        ))}
       </div>
     </>
-  )
+  );
 }
 
-export default CreateTask
+export default CreateTask;

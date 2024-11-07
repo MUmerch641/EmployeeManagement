@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AllTask({tasks}) {
   return (
-    <div className="task-preview mt-10 p-4 border rounded overflow-y-scroll Scroll h-[35vh]">
+    <div className="task-preview mt-10 p-4 border rounded  h-[35vh]">
   <h2 className="text-xl font-semibold mb-2">Task Preview</h2>
   
   {/* Display each task in the array */}
